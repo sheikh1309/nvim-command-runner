@@ -8,8 +8,7 @@ let s:terminal_bufnr = 0
 
 let s:scriptdir = resolve(expand('<sfile>:p:h') . '/..')
 " The path to the binary that was created out of 'cargo build' or 'cargo build --release". This will generally be 'target/release/name'
-" let s:bin = s:scriptdir . '/target/release/nvim-command-runner'
-let s:bin = '/Users/hassansheikhahmed/Projects/rust/nvim-command-runner/target/release/nvim-command-runner'
+let s:bin = s:scriptdir . '/target/release/nvim-command-runner'
 
 " Entry point. Initialize RPC. If it succeeds, then attach commands to the `rpcnotify` invocations.
 function! s:connect()
