@@ -1,9 +1,11 @@
+name: "pre-release"
+
 on:
   push:
     branches: [master]
 
 jobs:
-  release:
+  pre-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,10 +16,10 @@ jobs:
         with:
           command: build
           args: --release
-      - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          tag-prefix: 'nvim_command_runner_'
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: target/*
