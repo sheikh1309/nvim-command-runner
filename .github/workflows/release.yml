@@ -1,11 +1,7 @@
-name: "pre-release"
-
-on:
-  push:
-    branches: [master]
-
+name: Publish Release
+on: [push]
 jobs:
-  pre-release:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,10 +12,10 @@ jobs:
         with:
           command: build
           args: --release
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: actions/checkout@master
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: true
-          title: "app"
-          files: "*"
+          args: MyReleaseMessage
