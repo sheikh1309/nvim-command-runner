@@ -22,4 +22,4 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: true
           title: "app"
-          files: target
+          files: *
